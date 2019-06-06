@@ -33,12 +33,8 @@ var drawResults = function (ctx, names, times) {
   for (var i = 0; i < times.length; i++) {
     var height = Math.floor(maxHeight * (times[i] * 100 / getMaxTime()) / 100);
     var time = Math.floor(times[i]);
-    var color = 'hsl(240, ' + Math.floor(Math.random() * 101) + '%, 50%)';
-    if (names[i] === 'Вы') {
-      color = 'rgba(255, 0, 0, 1)';
-    }
     drawText(ctx, names[i], startingPointX, startingPointY);
-    drawRect(ctx, startingPointX, startingPointY - 10, width, -height, color);
+    drawRect(ctx, startingPointX, startingPointY - 10, width, -height, (names[i] === 'Вы') ? 'rgba(255, 0, 0, 1)' : 'hsl(240, ' + Math.floor(Math.random() * 101) + '%, 50%)');
     drawText(ctx, time, startingPointX, startingPointY - 10 - height - 10, '16px PT Mono', 'alphabetic');
     startingPointX += 90;
   }
