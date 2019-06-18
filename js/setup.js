@@ -69,18 +69,21 @@ var getRndColor = function (typeOfPart) {
 };
 
 userCharacterCoat.addEventListener('click', function () {
-  userCharacterCoat.style.fill = getRndColor(WIZARD_COLORS.coat);
-  userCharacterCoatInput.value = userCharacterCoat.style.fill;
+  var color = getRndColor(WIZARD_COLORS.coat);
+  userCharacterCoat.style.fill = color;
+  userCharacterCoatInput.value = color;
 });
 
 userCharacterEyes.addEventListener('click', function () {
-  userCharacterEyes.style.fill = getRndColor(WIZARD_COLORS.eyes);
-  userCharacterEyesInput.value = userCharacterEyes.style.fill;
+  var color = getRndColor(WIZARD_COLORS.eyes);
+  userCharacterEyes.style.fill = color;
+  userCharacterEyesInput.value = color;
 });
 
 userCharacterFireball.addEventListener('click', function () {
-  userCharacterFireball.style.background = getRndColor(WIZARD_COLORS.fireball);
-  userCharacterFireballInput.value = userCharacterFireball.style.background;
+  var color = getRndColor(WIZARD_COLORS.fireball);
+  userCharacterFireball.style.background = color;
+  userCharacterFireballInput.value = color;
 });
 
 var NUM_OF_WIZARDS = 4;
