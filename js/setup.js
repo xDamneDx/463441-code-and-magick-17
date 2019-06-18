@@ -3,7 +3,7 @@
 var getRndNum = function (min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
-
+var NUM_OF_WIZARDS = 4;
 var KEYCODE = {
   enter: 13,
   esc: 27
@@ -13,11 +13,13 @@ var WIZARD_COLORS = {
   eyes: ['black', 'red', 'blue', 'yellow', 'green'],
   fireball: ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848']
 };
+var similarWizardTemplate = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item');
+var similarListElement = document.querySelector('.setup-similar-list');
+var fragment = document.createDocumentFragment();
 var userSetup = document.querySelector('.setup');
 var userSetupOpen = document.querySelector('.setup-open');
 var userSetupClose = userSetup.querySelector('.setup-close');
 var userSetupOpenIcon = userSetupOpen.querySelector('.setup-open-icon');
-var userSetupNameInput = userSetup.querySelector('.setup-user-name');
 var userSetupCharacter = document.querySelector('.setup-wizard');
 var userCharacterCoat = userSetupCharacter.querySelector('.wizard-coat');
 var setupPlayer = document.querySelector('.setup-player');
@@ -30,7 +32,7 @@ var userCharacterFireballInput = userCharacterFireball.querySelector('input[name
 userSetup.querySelector('.setup-similar').classList.remove('hidden');
 
 var setupEscPressHandler = function (evt) {
-  if (evt.keyCode === KEYCODE.esc && document.activeElement !== userSetupNameInput) {
+  if (evt.keyCode === KEYCODE.esc && !evt.target.classList.contains('setup-user-name')) {
     closeSetup();
   }
 };
@@ -85,11 +87,6 @@ userCharacterFireball.addEventListener('click', function () {
   userCharacterFireball.style.background = color;
   userCharacterFireballInput.value = color;
 });
-
-var NUM_OF_WIZARDS = 4;
-var similarWizardTemplate = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item');
-var similarListElement = document.querySelector('.setup-similar-list');
-var fragment = document.createDocumentFragment();
 
 var getCharactersData = function (numOfCharacters) {
   var charactersData = [];
