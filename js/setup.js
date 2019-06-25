@@ -13,6 +13,10 @@ var WIZARD_COLORS = {
   eyes: ['black', 'red', 'blue', 'yellow', 'green'],
   fireball: ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848']
 };
+var SETUP_DEFAULT_POSITION = {
+  top: '80px',
+  left: '50%'
+};
 var similarWizardTemplate = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item');
 var similarListElement = document.querySelector('.setup-similar-list');
 var fragment = document.createDocumentFragment();
@@ -39,6 +43,10 @@ var setupEscPressHandler = function (evt) {
 
 var openSetup = function () {
   userSetup.classList.remove('hidden');
+
+  userSetup.style.top = SETUP_DEFAULT_POSITION.top;
+  userSetup.style.left = SETUP_DEFAULT_POSITION.left;
+
   document.addEventListener('keydown', setupEscPressHandler);
 };
 
