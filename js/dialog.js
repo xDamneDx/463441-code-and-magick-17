@@ -104,7 +104,7 @@
   };
 
   form.addEventListener('submit', function (evt) {
-    window.backend.save(new FormData(form), successHandler, errorHandler);
+    window.backend.request(successHandler, errorHandler, new FormData(form));
     evt.preventDefault();
   });
 
