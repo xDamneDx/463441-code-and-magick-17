@@ -35,5 +35,5 @@
     userSetupFooter.insertAdjacentElement('beforebegin', node);
   };
 
-  window.backend.request(successHandler, errorHandler);
+  window.backend.load(successHandler, errorHandler);
 })();

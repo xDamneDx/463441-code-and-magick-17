@@ -13,17 +13,9 @@
     post: 'POST'
   };
 
-  var url = URL.download;
   var errorMessage = 'Не удалось загрузить похожих магов. Ошибка: ';
-  var method = METHOD.get;
 
-  var serverOperations = function (onLoad, onError, data) {
-    if (data) {
-      url = URL.upload;
-      errorMessage = 'Что-то пошло не так: ';
-      method = METHOD.post;
-    }
-
+  var serverOperations = function (onLoad, onError, method, url, data) {
     var xhr = new XMLHttpRequest();
     xhr.responseType = 'json';
 
@@ -31,6 +23,9 @@
       if (xhr.status === XHR_STATUS.ok) {
         onLoad(xhr.response);
       } else {
+        if (data) {
+          errorMessage = 'Что-то пошло не так: ';
+        }
         onError(errorMessage + xhr.status + ' ' + xhr.statusText);
       }
     });
@@ -40,6 +35,11 @@
   };
 
   window.backend = {
-    request: serverOperations
+    load: function (onLoad, onError) {
+      serverOperations(onLoad, onError, METHOD.get, URL.download);
+    },
+    save: function (onLoad, onError, data) {
+      serverOperations(onLoad, onError, METHOD.post, URL.upload, data);
+    }
   };
 })();
