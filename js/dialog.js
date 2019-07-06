@@ -11,8 +11,8 @@
   var userSetupClose = userSetup.querySelector('.setup-close');
   var userSetupOpenIcon = userSetupOpen.querySelector('.setup-open-icon');
   var userSetupUpload = userSetup.querySelector('.upload');
-
-  userSetup.querySelector('.setup-similar').classList.remove('hidden');
+  var form = userSetup.querySelector('.setup-wizard-form');
+  var userSetupFooter = userSetup.querySelector('.setup-footer');
 
   var setupEscPressHandler = function (evt) {
     if (evt.keyCode === window.utils.keyCode.esc && !evt.target.classList.contains('setup-user-name')) {
@@ -85,6 +85,27 @@
     };
     document.addEventListener('mousemove', mouseMoveHandler);
     document.addEventListener('mouseup', mouseUpHandler);
+  });
+
+  var successHandler = function () {
+    userSetup.classList.add('hidden');
+  };
+
+  var errorHandler = function (errorMessage) {
+    var node = document.createElement('div');
+    node.style = 'z-index: 100; margin: 0 auto; text-align: center; background-color: tomato;';
+    node.style.position = 'absolute';
+    node.style.left = 0;
+    node.style.right = 0;
+    node.style.fontSize = '26px';
+
+    node.textContent = errorMessage;
+    userSetupFooter.insertAdjacentElement('beforebegin', node);
+  };
+
+  form.addEventListener('submit', function (evt) {
+    window.backend.save(successHandler, errorHandler, new FormData(form));
+    evt.preventDefault();
   });
 
   window.dialog = {
