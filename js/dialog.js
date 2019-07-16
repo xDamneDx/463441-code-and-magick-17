@@ -107,8 +107,4 @@
     window.backend.save(successHandler, errorHandler, new FormData(form));
     evt.preventDefault();
   });
-
-  window.dialog = {
-    userSetup: userSetup
-  };
 })();
